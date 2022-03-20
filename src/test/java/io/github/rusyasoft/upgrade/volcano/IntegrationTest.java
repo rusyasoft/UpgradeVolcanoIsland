@@ -6,7 +6,6 @@ import io.github.rusyasoft.upgrade.volcano.model.Contact;
 import io.github.rusyasoft.upgrade.volcano.model.ContactAndDates;
 import io.github.rusyasoft.upgrade.volcano.model.ReservationEntity;
 import io.github.rusyasoft.upgrade.volcano.tools.DateUtils;
-import io.github.rusyasoft.upgrade.volcano.tools.ReservationValidation;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +20,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 @RunWith(SpringRunner.class)

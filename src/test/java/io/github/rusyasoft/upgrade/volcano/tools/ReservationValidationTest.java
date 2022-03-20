@@ -1,6 +1,6 @@
 package io.github.rusyasoft.upgrade.volcano.tools;
 
-import javafx.util.Pair;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,16 +41,16 @@ public class ReservationValidationTest {
     public void validatedAvailableDatesNoDates() {
         Pair<Date, Date> interval = ReservationValidation.validatedAvailableDates(null, null);
 
-        Assert.assertEquals(extractDate(todayDate), extractDate(interval.getKey()));
-        Assert.assertEquals(extractDate(todayPlus30), extractDate(interval.getValue()));
+        Assert.assertEquals(extractDate(todayDate), extractDate(interval.getElement0()));
+        Assert.assertEquals(extractDate(todayPlus30), extractDate(interval.getElement1()));
     }
 
     @Test
     public void validatedAvailableProperInterval() {
         Pair<Date, Date> interval = ReservationValidation.validatedAvailableDates(todayDate, todayPlus10);
 
-        Assert.assertEquals(extractDate(todayDate), extractDate(interval.getKey()));
-        Assert.assertEquals(extractDate(todayPlus10), extractDate(interval.getValue()));
+        Assert.assertEquals(extractDate(todayDate), extractDate(interval.getElement0()));
+        Assert.assertEquals(extractDate(todayPlus10), extractDate(interval.getElement1()));
     }
 
     @Test

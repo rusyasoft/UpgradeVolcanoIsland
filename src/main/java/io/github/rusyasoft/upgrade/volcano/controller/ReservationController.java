@@ -4,10 +4,10 @@ import io.github.rusyasoft.upgrade.volcano.model.ContactAndDates;
 import io.github.rusyasoft.upgrade.volcano.model.ReservationEntity;
 import io.github.rusyasoft.upgrade.volcano.model.ReservationUpdateData;
 import io.github.rusyasoft.upgrade.volcano.service.IslandService;
+import io.github.rusyasoft.upgrade.volcano.tools.Pair;
 import io.github.rusyasoft.upgrade.volcano.tools.ReservationValidation;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +39,7 @@ public class ReservationController {
             @DateTimeFormat(pattern="yyyy-MM-dd") Date toDate
     ) {
         Pair<Date, Date> interval = ReservationValidation.validatedAvailableDates(fromDate, toDate);
-        return islandService.getListOfAvailableDates(interval.getKey(), interval.getValue());
+        return islandService.getListOfAvailableDates(interval.getElement0(), interval.getElement1());
     }
 
     @PostMapping(value = "/createReservation")

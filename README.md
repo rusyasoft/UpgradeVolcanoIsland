@@ -1,4 +1,25 @@
+# Upgrade Volcano Island Reservation 
 
+## Build and Test Project
+
+`#gradle build`
+
+## Run Project
+
+`#gradle bootRun` or `#./gradlew bootRun`
+
+http://localhost:8081/swagger-ui.html  is the good place to start. Swagger has very simple and intuitive way of requesting and working with API. (Postman or any other tool also can be used)
+
+![swagger-main-api](swagger-front.png)
+
+
+## High-Level Architecture
+
+![high-level-architecture](high-level-architecture.png)
+
+## Booking State Transition
+
+![booking-state-transitions](booking-state-transitions.png)
 
 ## To Start Service with External Kafka broker on local machine
 
