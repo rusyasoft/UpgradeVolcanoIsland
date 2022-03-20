@@ -32,3 +32,8 @@ out/
 ### VS Code ###
 .vscode/
 
+/kafka_2.13-3.1.0/
+/kafka_2.13-3.1.0/*
+kafka_2.13-3.1.0/
+kafka_2.13-3.1.0/*
+

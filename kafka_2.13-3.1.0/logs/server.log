@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [2022-03-20 09:15:09,526] INFO Registered kafka:type=kafka.Log4jController MBean (kafka.utils.Log4jControllerRegistration$)
 [2022-03-20 09:15:12,262] INFO Reading configuration from: config/zookeeper.properties (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
 [2022-03-20 09:15:12,264] WARN config/zookeeper.properties is relative. Prepend ./ to indicate that you're sure! (org.apache.zookeeper.server.quorum.QuorumPeerConfig)
@@ -1861,3 +1862,8 @@ org.apache.zookeeper.KeeperException$NodeExistsException: KeeperErrorCode = Node
 [2022-03-20 09:55:29,848] INFO [GroupCoordinator 0]: Preparing to rebalance group upgrade-group in state PreparingRebalance with old generation 112 (__consumer_offsets-46) (reason: Adding new member consumer-1-33166616-1e73-4f44-b3a5-3fac978743d6 with group instance id None) (kafka.coordinator.group.GroupCoordinator)
 [2022-03-20 09:55:29,848] INFO [GroupCoordinator 0]: Stabilized group upgrade-group generation 113 (__consumer_offsets-46) with 1 members (kafka.coordinator.group.GroupCoordinator)
 [2022-03-20 09:55:29,853] INFO [GroupCoordinator 0]: Assignment received from leader consumer-1-33166616-1e73-4f44-b3a5-3fac978743d6 for group upgrade-group for generation 113. The group has 1 members, 0 of which are static. (kafka.coordinator.group.GroupCoordinator)
+=======
+[2022-03-20 10:09:58,562] INFO [GroupCoordinator 0]: Preparing to rebalance group upgrade-group in state PreparingRebalance with old generation 113 (__consumer_offsets-46) (reason: Removing member consumer-1-33166616-1e73-4f44-b3a5-3fac978743d6 on LeaveGroup) (kafka.coordinator.group.GroupCoordinator)
+[2022-03-20 10:09:58,564] INFO [GroupCoordinator 0]: Group upgrade-group with generation 114 is now empty (__consumer_offsets-46) (kafka.coordinator.group.GroupCoordinator)
+[2022-03-20 10:09:58,569] INFO [GroupCoordinator 0]: Member MemberMetadata(memberId=consumer-1-33166616-1e73-4f44-b3a5-3fac978743d6, groupInstanceId=None, clientId=consumer-1, clientHost=/192.168.128.15, sessionTimeoutMs=10000, rebalanceTimeoutMs=300000, supportedProtocols=List(range)) has left group upgrade-group through explicit `LeaveGroup` request (kafka.coordinator.group.GroupCoordinator)
+>>>>>>> initial working version of the code, tested manually only. No Unit test and integ tests
