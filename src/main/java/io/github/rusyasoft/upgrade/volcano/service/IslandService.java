@@ -5,7 +5,7 @@ import io.github.rusyasoft.upgrade.volcano.model.Contact;
 import io.github.rusyasoft.upgrade.volcano.model.ReservationEntity;
 import io.github.rusyasoft.upgrade.volcano.model.ReservationUpdateData;
 import io.github.rusyasoft.upgrade.volcano.model.ReserveDateEntity;
-import io.github.rusyasoft.upgrade.volcano.producer.KafkaProducer;
+import io.github.rusyasoft.upgrade.volcano.queue.ReservationProducer;
 import io.github.rusyasoft.upgrade.volcano.repository.ReservationRepository;
 import io.github.rusyasoft.upgrade.volcano.repository.ReserveDateRepository;
 import io.github.rusyasoft.upgrade.volcano.tools.ReservationBuilder;
@@ -25,7 +25,7 @@ public class IslandService {
     private IslandBookingService islandBookingService;
 
     @Autowired
-    private KafkaProducer kafkaProducer;
+    private ReservationProducer reservationProducer;
 
     @Autowired
     public IslandService(
@@ -65,12 +65,10 @@ public class IslandService {
         ReservationEntity newReservation = ReservationBuilder.newReservationEntity(contact, fromDate, toDate);
         ReservationEntity afterSaving = this.reservationRepository.save(newReservation);
 
-        kafkaProducer.send(afterSaving.getResId().toString());
+        reservationProducer.produce(afterSaving.getResId().toString());
 
         return afterSaving.getResId();
     }
-
-
 
     public void processReservation(Integer resId) {
         ReservationEntity reservationEntity = this.reservationRepository.findByResId(resId);
@@ -109,7 +107,7 @@ public class IslandService {
 
                 ReservationEntity afterSaving = this.reservationRepository.save(updateReservation);
 
-                kafkaProducer.send(afterSaving.getResId().toString());
+                reservationProducer.produce(afterSaving.getResId().toString());
                 break;
             }
             default: {

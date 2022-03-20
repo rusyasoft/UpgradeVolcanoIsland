@@ -3,7 +3,6 @@ package io.github.rusyasoft.upgrade.volcano.service;
 import io.github.rusyasoft.upgrade.volcano.model.BookingState;
 import io.github.rusyasoft.upgrade.volcano.model.ReservationEntity;
 import io.github.rusyasoft.upgrade.volcano.model.ReserveDateEntity;
-import io.github.rusyasoft.upgrade.volcano.producer.KafkaProducer;
 import io.github.rusyasoft.upgrade.volcano.repository.ReservationRepository;
 import io.github.rusyasoft.upgrade.volcano.repository.ReserveDateRepository;
 import io.github.rusyasoft.upgrade.volcano.tools.ReservationBuilder;

@@ -3,7 +3,6 @@ package io.github.rusyasoft.upgrade.volcano.controller;
 import io.github.rusyasoft.upgrade.volcano.model.ContactAndDates;
 import io.github.rusyasoft.upgrade.volcano.model.ReservationEntity;
 import io.github.rusyasoft.upgrade.volcano.model.ReservationUpdateData;
-import io.github.rusyasoft.upgrade.volcano.producer.KafkaProducer;
 import io.github.rusyasoft.upgrade.volcano.service.IslandService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,9 +24,6 @@ import java.util.List;
 @RequestMapping("/reservation/")
 @RestController
 public class ReservationController {
-
-    @Autowired
-    private KafkaProducer kafkaProducer;
 
     @Autowired
     private IslandService islandService;
