@@ -7,6 +7,7 @@
     - start zookeeper: `bin/zookeeper-server-start.sh config/zookeeper.properties`
     - start kafka broker: `bin/kafka-server-start.sh config/server.properties`
     - create reservation topic: `bin/kafka-topics.sh --create --topic reserveTopic --bootstrap-server localhost:9092`
+    - list out existing topics: `bin/kafka-topics.sh --list --bootstrap-server localhost:9092`
     
 
 ## H2 Database connection and checking

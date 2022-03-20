@@ -4,8 +4,10 @@ import io.github.rusyasoft.upgrade.volcano.model.ContactAndDates;
 import io.github.rusyasoft.upgrade.volcano.model.ReservationEntity;
 import io.github.rusyasoft.upgrade.volcano.model.ReservationUpdateData;
 import io.github.rusyasoft.upgrade.volcano.service.IslandService;
+import io.github.rusyasoft.upgrade.volcano.tools.ReservationValidation;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import javafx.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -37,22 +38,19 @@ public class ReservationController {
             @RequestParam(name = "toDate", required = false)
             @DateTimeFormat(pattern="yyyy-MM-dd") Date toDate
     ) {
-        if (fromDate == null || toDate == null) {
-            Calendar calendar = Calendar.getInstance();
-            Date todayDate = new Date();
-            calendar.setTime(todayDate);
-            calendar.add(Calendar.DATE, 2); // 2 because today date also inclusive
-            Date todayPlus3 = calendar.getTime();
-
-            fromDate = todayDate;
-            toDate = todayPlus3;
-        }
-        return islandService.getListOfAvailableDates(fromDate, toDate);
+        Pair<Date, Date> interval = ReservationValidation.validatedAvailableDates(fromDate, toDate);
+        return islandService.getListOfAvailableDates(interval.getKey(), interval.getValue());
     }
 
     @PostMapping(value = "/createReservation")
     @ApiOperation(value = "Creating a new reservation")
     public Integer createReservation(@RequestBody ContactAndDates contactAndDates) {
+
+        ReservationValidation.validateNewReservationDatesInterval(
+                contactAndDates.getFromDate(),
+                contactAndDates.getToDate()
+        );
+
         return islandService.createReservation(
                 contactAndDates.getContact(),
                 contactAndDates.getFromDate(),
@@ -72,6 +70,10 @@ public class ReservationController {
     @PutMapping(value = "/updateReservation")
     @ApiOperation(value = "Updating status of existing reservation")
     public Integer updateReservationStatus(@RequestBody ReservationUpdateData reservationUpdateData) {
+        ReservationValidation.validateNewReservationDatesInterval(
+                reservationUpdateData.getContactAndDates().getFromDate(),
+                reservationUpdateData.getContactAndDates().getToDate()
+        );
         return islandService.updateReservation(reservationUpdateData);
     }
 
