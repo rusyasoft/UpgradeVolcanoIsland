@@ -4,6 +4,8 @@ spring:
     consumer:
       auto-offset-reset: earliest
       group-id: upgrade-group
+    listener:
+      missing-topics-fatal: false
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
 

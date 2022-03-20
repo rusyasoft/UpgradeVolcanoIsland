@@ -1,7 +1,6 @@
 package io.github.rusyasoft.upgrade.volcano.tools;
 
 import javafx.util.Pair;
-import org.hibernate.query.criteria.internal.expression.function.AggregationFunction;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -16,7 +15,7 @@ public class ReservationValidation {
         // if one of the dates are empty then we go with current date and +3 date interval
         if (fromDate == null || toDate == null) {
             Calendar calendar = Calendar.getInstance();
-            Date todayDate = new Date();
+            Date todayDate = DateUtils.getToday();
             calendar.setTime(todayDate);
             calendar.add(Calendar.DATE, 30); // by default 1 month is checked
             Date todayPlus30 = calendar.getTime();
@@ -38,7 +37,7 @@ public class ReservationValidation {
             throw new RuntimeException("interval is given wrong!");
         }
 
-        Date today = getToday();
+        Date today = DateUtils.getToday();
         if (toDate.before(today)) {
             throw new RuntimeException("cannot do reservation for passed dates!");
         }
@@ -60,7 +59,5 @@ public class ReservationValidation {
         return TimeUnit.DAYS.convert(diffInMillis, TimeUnit.MILLISECONDS) + 1; // inclusive dates
     }
 
-    private static Date getToday() {
-        return new Date();
-    }
+
 }
