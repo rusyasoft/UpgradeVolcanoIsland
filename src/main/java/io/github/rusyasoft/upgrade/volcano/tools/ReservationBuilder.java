@@ -27,14 +27,6 @@ public class ReservationBuilder {
         return updateReservation;
     }
 
-    public static ReservationEntity updatedReservationEntity(int resId, Contact contact, Date from, Date to,
-                                                             BookingState state) {
-        ReservationEntity updateReservation = updatedReservationEntity(resId, contact, from, to);
-        updateReservation.setBookingState(state);
-
-        return updateReservation;
-    }
-
     public static ReservationEntity updatedReservationEntity(ReservationEntity reservationEntity,
                                                              BookingState state) {
         reservationEntity.setBookingState(state);
